@@ -18,6 +18,18 @@ const AuthForm = () => {
       password,
     });
 
+    /**
+     signIn params: 
+      - provider: The name of the provider (in this case, "credentials").
+      - options: An object containing the login credentials and other options.
+
+      signIn returns a Promise that resolves to an object containing the following properties:
+      - ok: A boolean indicating whether the sign-in was successful.
+      - error: A string describing the error, if any (e.g., "Invalid credentials").
+      - status: The HTTP status code of the response.
+      - url: The URL to redirect to if redirect: true was used.
+     */
+
     if (res?.error) {
       setError("Invalid email or password.");
     } else {
@@ -74,6 +86,7 @@ const AuthForm = () => {
 export default AuthForm;
 
 /*What Happens When signIn is Called?
+
 - The signIn function sends a request to the NextAuth API endpoint (/api/auth/callback/credentials) with the provided credentials (email and password).
 - The authorize function in your CredentialsProvider (defined in [...nextauth].ts) is executed to validate the credentials.
 - If the credentials are valid:
