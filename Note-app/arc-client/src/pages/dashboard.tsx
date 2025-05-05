@@ -7,6 +7,8 @@ import { NoteType } from "@/types/note";
 import NoteCard from "@/components/NoteCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
 
 export default function DashboardPage() {
   const { data: session } = useSession();
@@ -56,8 +58,8 @@ export default function DashboardPage() {
 
       <div className="space-y-2">
         <Input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <Input placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
-        <Button onClick={handleSave}>{editingId ? "Update" : "Add"} Note</Button>
+        <Textarea placeholder="Content" value={content} onChange={(e) => setContent(e.target.value)} />
+        <Button className="bg-slate-100 text-black hover:bg-slate-300" onClick={handleSave}>{editingId ? "Update" : "Add"} Note</Button>
       </div>
 
       <div className="grid gap-4">

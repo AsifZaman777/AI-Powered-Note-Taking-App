@@ -11,15 +11,15 @@ interface NoteCardProps {
 
 export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
   return (
-    <div className="border rounded-lg p-4 bg-white dark:bg-slate-800 shadow-sm">
+    <div className="border rounded-lg p-4 bg-neutral-800 shadow-sm">
       <h3 className="text-lg font-semibold">{note.title}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-300 mt-2">{note.content}</p>
+      <p className="text-sm text-slate-300 dark:text-gray-300 mt-2">{note.content}</p>
 
       <div className="flex justify-end gap-2 mt-4">
-        <Button variant="outline" onClick={() => onEdit(note)}>
+        <Button className="bg-blue-500 hover:bg-blue-700" onClick={() => onEdit(note)}>
           Edit
         </Button>
-        <Button variant="destructive" onClick={() => onDelete(note._id)}>
+        <Button className="bg-red-500 hover:bg-red-400" onClick={() => onDelete(note._id)}>
           Delete
         </Button>
       </div>
