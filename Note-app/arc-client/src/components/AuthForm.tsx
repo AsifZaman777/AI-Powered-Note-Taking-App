@@ -26,7 +26,6 @@ const AuthForm = () => {
     }
   };
 
-
   return (
     <div className="max-w-md mx-auto p-6 border rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Login</h2>
@@ -73,3 +72,44 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
+
+/*What Happens When signIn is Called?
+- The signIn function sends a request to the NextAuth API endpoint (/api/auth/callback/credentials) with the provided credentials (email and password).
+- The authorize function in your CredentialsProvider (defined in [...nextauth].ts) is executed to validate the credentials.
+- If the credentials are valid:
+  The user is authenticated, and a session is created.
+  The jwt and session callbacks are triggered to customize the token and session.
+- If the credentials are invalid:
+  The authorize function returns null, and the signIn function returns an error.
+
+
+-- Response (res)
+  The res object returned by signIn contains the following properties:
+   -error: A string describing the error, if any (e.g., "Invalid credentials").
+   -ok: A boolean indicating whether the sign-in was successful.
+   -status: The HTTP status code of the response.
+   -url: The URL to redirect to if redirect: true was used.
+
+How It Works in the Code
+ -The user submits the login form.
+ -The signIn function is called with the user's email and password.
+ -If the login is successful (res?.error is null):
+   -The user is redirected to the /dashboard page.
+ -If the login fails (res?.error is not null):
+   -An error message ("Invalid email or password.") is displayed.
+
+
+Example Flow
+ -User enters:
+   Email: test@example.com
+   Password: Eram1234$
+ -signIn sends these credentials to the backend.
+ -The authorize function in [...nextauth].ts validates the credentials.
+ -If valid:
+    signIn returns { ok: true, error: null, status: 200 }.
+    The user is redirected to /dashboard.
+ -If invalid:
+    signIn returns { ok: false, error: "Invalid credentials", status: 401 }.
+    The error message is displayed.
+
+*/
