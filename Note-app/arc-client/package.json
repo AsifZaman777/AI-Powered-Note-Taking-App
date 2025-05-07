@@ -2,11 +2,14 @@
   "name": "arc-client",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "electron-dev": "cross-env NODE_ENV=development electron .",
+    "electron-build": "next build && electron-builder"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",
@@ -25,10 +28,32 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
+    "electron": "^36.1.0",
+    "electron-builder": "^26.0.12",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.2.9",
     "typescript": "^5"
+  },
+  "build": {
+    "appId": "com.arcclient.desktop",
+    "productName": "ArcClient",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      ".next/**/*",
+      "main.js"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "public/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "public/icon.icns"
+    }
   }
 }
